@@ -3,13 +3,14 @@ import Paragraph from './Paragraph'
 import './App.css'
 import { paragraphs } from './data'
 function App() {
-  const [para, setPara] = useState(0)
+  const [para, setPara] = useState(1)
   const [paragraph, setParagraph] = useState([])
   const handleClick= (e)=>{
     e.preventDefault()
-    const {numOfPara} = e.target
-    setPara(numOfPara.value)
-    setParagraph(paragraphs.slice(0,para))
+    const { numOfPara } = e.target
+    const newPara = parseInt(numOfPara.value)
+    setPara(newPara)
+    setParagraph(paragraphs.slice(0, newPara))
 
   }
   console.log(paragraph)
@@ -25,8 +26,9 @@ function App() {
             type="number"
             className="rounded-3 ps-2 mx-2"
             style={{ width: '50px',height:"40px" }}
-            min={1}
-            max={8}
+            min="1"
+            max="8"
+            defaultValue="1"
             name="numOfPara"
           />
           <button className=" mx-2 btn btn-success">Generate</button>
